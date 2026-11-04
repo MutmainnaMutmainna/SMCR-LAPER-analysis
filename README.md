@@ -11,9 +11,9 @@ Analysis code for the Data Descriptor "Preservice physics teachers' multiple-cho
 | Folder | Content |
 |---|---|
 | `R/` | Analysis scripts, numbered in the order they are run |
-| `mappings/` | Item-to-factor and item-to-variable mappings (Supplementary Tables S1 to S3 as CSV) and CFA model syntax |
-| `validation/` | Expert validation ratings per item (anonymised) and Aiken's V values |
-| `outputs/` | Saved results cited in the manuscript (out-of-fold predictions, labels, split IDs) |
+| `mappings/` | Placeholder. Mappings of Supplementary Tables S1 to S3 as CSV are to be added. The CFA model syntax is currently inside `R/06_cfa.R` |
+| `validation/` | Aiken's V per item (Table 5). Ratings of individual validators are not distributed |
+| `outputs/` | Results written by the scripts when they are run. Saved predictions, labels, and split IDs of the RF analysis are to be added with `R/05_irt_vs_rf.R` |
 | `keys/` | Not distributed. See "Answer keys" below |
 
 ## Data
@@ -57,7 +57,7 @@ R 4.6.0 and the packages recorded in `session_info.txt` (or `renv.lock`). Main p
 
 ## Settings recorded for the illustrative use case
 
-- Random seed 42, stratified 70/30 split (training 425, test 180). The split IDs are saved in `outputs/` because random number generation can differ between R versions.
+- Random seed 42, stratified 70/30 split (training 425, test 180). The split IDs will be saved in `outputs/` by `R/05_irt_vs_rf.R` (to be added) because random number generation can differ between R versions.
 - RF tuning by random search over 20 values of mtry in [2, 4 times the square root of p] with p = 62, five-fold cross-validation, ntree = 300, AUC as the criterion.
 - SMOTE with K = 5, applied only to training data within each fold.
 - Response time ratio relative to 1,800 seconds, threshold 0.25 (450 seconds), ratios above 1.0 truncated to 1.0.
