@@ -2,14 +2,15 @@ cff-version: 1.2.0
 message: "If you use this code, please cite the Data Descriptor and this archive."
 title: "SMCR-LAPER analysis code"
 version: "1.0.0"
-date-released: "2026-11-02"
+date-released: "2026-11-05"
 license: MIT
 authors:
   - family-names: "Mutmainna"
     given-names: "Mutmainna"
     affiliation: "Universitas Negeri Yogyakarta; Universitas Sulawesi Barat"
-repository-code: "https://github.com/MutmainnaMutmainna/IRT-Vs-RF"
-abstract: "R scripts for the technical validation (Aiken's V, confirmatory factor analysis, reliability) and the illustrative IRT and Random Forest analysis of the SMCR-LAPER dataset."
+repository-code: "https://github.com/MutmainnaMutmainna/SMCR-LAPER-analysis"
+doi: "10.5281/zenodo.23957947"
+abstract: "R scripts for the technical validation of the SMCR-LAPER dataset: FCI2 response time preparation, MBT reliability, and a draft script for confirmatory factor analysis and reliability. Answer keys and raw data are not redistributed."
 related-identifiers: []
 references:
   - type: dataset
