@@ -3,7 +3,7 @@
 Analysis code for the Data Descriptor "Preservice physics teachers' multiple-choice response dataset for physics education research" (Scientific Data).
 
 - Dataset: Mendeley Data, https://doi.org/10.17632/j6x6n422sh (most recent version). The analyses use the corrected workbook identified by the SHA-256 given below. Version 4 contains errors in MBT20 and must not be used.
-- Code archive: [Zenodo DOI to be added], version [x]
+- Code archive: Zenodo, https://doi.org/10.5281/zenodo.23957947, version 1.0.0
 - Software: R 4.6.0
 
 ## What is in this archive
