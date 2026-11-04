@@ -1,0 +1,13 @@
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store
+# Instrument answer keys are not redistributed (PhysPort restrictions)
+keys/answer_keys.xlsx
+keys/answer_keys.csv
+# Local working files that contain scored (0/1) responses
+work/
+# Local copy of the published workbook
+data/
+*.xlsx
