@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the Data Descriptor and this archive."
+title: "SMCR-LAPER analysis code"
+version: "1.0.0"
+date-released: "2026-11-02"
+license: MIT
+authors:
+  - family-names: "Mutmainna"
+    given-names: "Mutmainna"
+    affiliation: "Universitas Negeri Yogyakarta; Universitas Sulawesi Barat"
+repository-code: "https://github.com/MutmainnaMutmainna/IRT-Vs-RF"
+abstract: "R scripts for the technical validation (Aiken's V, confirmatory factor analysis, reliability) and the illustrative IRT and Random Forest analysis of the SMCR-LAPER dataset."
+related-identifiers: []
+references:
+  - type: dataset
+    title: "Student Multiple Choice Responses for Learning Analytics in Physics Education Research Dataset (SMCR-LAPER)"
+    doi: "10.17632/j6x6n422sh"
