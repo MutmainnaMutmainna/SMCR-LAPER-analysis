@@ -2,8 +2,8 @@
 
 Analysis code for the Data Descriptor "Preservice physics teachers' multiple-choice response dataset for physics education research" (Scientific Data).
 
-- Dataset: Mendeley Data, https://doi.org/10.17632/j6x6n422sh (most recent version). The analyses use the corrected workbook identified by the SHA-256 given below. Version 4 contains errors in MBT20 and must not be used.
-- Code archive: Zenodo, https://doi.org/10.5281/zenodo.23957947, version 1.0.0
+- Dataset: Mendeley Data, https://doi.org/10.17632/j6x6n422sh (most recent version). The analyses use the corrected workbook identified by the SHA-256 given below. Versions 4 and 5 contain errors in MBT20 and must not be used. Use version 6 (https://doi.org/10.17632/j6x6n422sh.6).
+- Code archive: Zenodo, https://doi.org/10.5281/zenodo.23957946, version 1.1.0
 - Software: R 4.6.0
 
 ## What is in this archive
@@ -13,12 +13,13 @@ Analysis code for the Data Descriptor "Preservice physics teachers' multiple-cho
 | `R/` | Analysis scripts, numbered in the order they are run |
 | `mappings/` | Placeholder. Mappings of Supplementary Tables S1 to S3 as CSV are to be added. The CFA model syntax is currently inside `R/06_cfa.R` |
 | `validation/` | Aiken's V per item (Table 5). Ratings of individual validators are not distributed |
-| `outputs/` | Results written by the scripts when they are run. Saved predictions, labels, and split IDs of the RF analysis are to be added with `R/05_irt_vs_rf.R` |
+| `outputs/` | Results written by the scripts when they are run (labels, split IDs, out-of-fold predictions, item parameters, agreement tables) |
+| `notebooks/` | HTML reports of the notebooks that produced the CFA and reliability results and the IRT and Random Forest results (no answer keys, no respondent-level data) |
 | `keys/` | Not distributed. See "Answer keys" below |
 
 ## Data
 
-The scripts read the published workbook (corrected version, Mendeley Data version 5 or later), sheet `Raw_data`. Set its file name in `DATA_FILE` in `R/00_config.R`. The data are not copied into this archive, so the archived code and the published data cannot diverge.
+The scripts read the published workbook (corrected version, Mendeley Data version 6 or later), sheet `Raw_data`. Set its file name in `DATA_FILE` in `R/00_config.R`. The data are not copied into this archive, so the archived code and the published data cannot diverge.
 
 Before running, check the file against the values below.
 
@@ -38,7 +39,7 @@ R 4.6.0 and the packages recorded in `session_info.txt` (or `renv.lock`). Main p
 
 ## How to run
 
-1. Place the Mendeley workbook (version 5) in `data/` and `keys/answer_keys.xlsx` in `keys/`, and set `DATA_FILE` at the top of `R/00_config.R`.
+1. Place the Mendeley workbook (version 6) in `data/` and `keys/answer_keys.xlsx` in `keys/`, and set `DATA_FILE` at the top of `R/00_config.R`.
 2. Restart R, set the working directory to the archive folder with `setwd()`, and run `source("R/00_start.R")` to check that the data load correctly.
 3. Run `source("run_all.R")`, or run the scripts one by one in numerical order.
 4. `R/06_cfa.R` is run separately. It needs a local CFA workbook (`data/CFA_workbook.xlsx`, one sheet per instrument, the respondents analysed in Table 6) that is not distributed, because the rule that selects the CFA respondents from the published workbook is not encoded in the script. The script prints the sample size of each instrument.
@@ -50,14 +51,14 @@ R 4.6.0 and the packages recorded in `session_info.txt` (or `renv.lock`). Main p
 | FCI2 analysis input (657 to 605 respondents, scoring, response time ratio) | `R/00_prepare_fci2.R` | included, run on the corrected workbook |
 | Table 5 (Aiken's V, item-level values) | `validation/aiken_v_by_item.csv` | included (values only, script to be added) |
 | Table 7 (reliability, MBT) | `R/02_reliability_mbt.R` | included, run on the corrected workbook |
-| Table 7 (reliability, other instruments) | `R/06_cfa.R` | to be added (draft written, not yet run) |
-| Table 6 and Supplementary Tables S1 to S3 (CFA fit, loadings) | `R/06_cfa.R` and `mappings/` | to be added (draft written, not yet run) |
-| Supplementary Tables S4 to S9 (FCI2 IRT assumptions and model comparison) | `R/04_irt_assumptions.R` | to be added |
-| Tables 8 and 9 and Fig. 4 (IRT, RF, and response time labels) | `R/05_irt_vs_rf.R` | to be added (draft written, not yet run) |
+| Table 7 (reliability, other instruments) | `R/06_cfa.R` | included, run on the author's local CFA workbook (HTML report in `notebooks/`) |
+| Table 6 and Supplementary Tables S1 to S3 (CFA fit, loadings) | `R/06_cfa.R` | included, run on the author's local CFA workbook (HTML report in `notebooks/`) |
+| Supplementary Tables S4 to S9 (FCI2 IRT assumptions and model comparison) | `R/05_irt_vs_rf.R` | included, run on the corrected workbook (HTML report in `notebooks/`) |
+| Tables 8 and 9 and Fig. 4 (IRT, RF, and response time labels) | `R/05_irt_vs_rf.R` | included, run on the corrected workbook (HTML report in `notebooks/`) |
 
 ## Settings recorded for the illustrative use case
 
-- Random seed 42, stratified 70/30 split (training 425, test 180). The split IDs will be saved in `outputs/` by `R/05_irt_vs_rf.R` (to be added) because random number generation can differ between R versions.
+- Random seed 42, stratified 70/30 split (training 425, test 180). The split IDs are saved in `outputs/` by `R/05_irt_vs_rf.R` because random number generation can differ between R versions.
 - RF tuning by random search over 20 values of mtry in [2, 4 times the square root of p] with p = 62, five-fold cross-validation, ntree = 300, AUC as the criterion.
 - SMOTE with K = 5, applied only to training data within each fold.
 - Response time ratio relative to 1,800 seconds, threshold 0.25 (450 seconds), ratios above 1.0 truncated to 1.0.
